@@ -1,0 +1,223 @@
+/* styles/detail-restaurant.css */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --background-color: #f4f6f7;
+  --text-color: #333;
+  --card-background: white;
+}
+
+.restaurant-detail {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--background-color);
+}
+
+.restaurant-header {
+  position: relative;
+  text-align: center;
+  margin-bottom: 30px;
+  background-color: var(--card-background);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.restaurant-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.restaurant-image:hover {
+  transform: scale(1.05);
+}
+
+.restaurant-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 15px;
+  margin: 0;
+}
+
+.restaurant-info {
+  background-color: var(--card-background);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f1f3f4;
+  border-radius: 8px;
+}
+
+.restaurant-meta span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.restaurant-meta span i {
+  font-size: 1.2em;
+}
+
+.restaurant-description,
+.restaurant-address,
+.restaurant-categories {
+  margin-bottom: 25px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.restaurant-description h3,
+.restaurant-address h3,
+.restaurant-categories h3 {
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.restaurant-menus {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.restaurant-menus .foods,
+.restaurant-menus .drinks {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.restaurant-menus h3 {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 10px;
+}
+
+.restaurant-menus ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.restaurant-menus li {
+  background-color: white;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.restaurant-menus li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.restaurant-reviews {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.restaurant-reviews h3 {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.restaurant-reviews .review {
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-reviews .review h4 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.restaurant-reviews .review small {
+  color: #777;
+  display: block;
+  margin-top: 10px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .restaurant-detail {
+    padding: 10px;
+  }
+
+  .restaurant-header {
+    margin-bottom: 20px;
+  }
+
+  .restaurant-image {
+    height: 250px;
+  }
+
+  .restaurant-info {
+    padding: 15px;
+  }
+
+  .restaurant-menus {
+    grid-template-columns: 1fr;
+  }
+
+  .restaurant-meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .restaurant-meta span {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .restaurant-image {
+    height: 200px;
+  }
+
+  .restaurant-header {
+    margin-bottom: 15px;
+  }
+
+  .restaurant-name {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  .restaurant-info {
+    padding: 10px;
+  }
+
+  .restaurant-menus ul {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+}
