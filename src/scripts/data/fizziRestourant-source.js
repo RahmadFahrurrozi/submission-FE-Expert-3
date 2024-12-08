@@ -12,7 +12,6 @@ class FizziRestaurantSource {
       return responseJson.restaurants;
     } catch (error) {
       console.error('Error in listRestaurants:', error);
-      // Ambil dari cache jika ada kesalahan
       return CacheHelper.revalidateCache(API_ENDPOINT.LIST);
     }
   }
@@ -27,7 +26,6 @@ class FizziRestaurantSource {
       return responseJson.restaurant;
     } catch (error) {
       console.error('Error in detailRestaurant:', error);
-      // Ambil dari cache jika ada kesalahan
       return CacheHelper.revalidateCache(API_ENDPOINT.DETAIL(id));
     }
   }
@@ -42,7 +40,6 @@ class FizziRestaurantSource {
       return responseJson.reviews;
     } catch (error) {
       console.error('Error in reviewRestaurant:', error);
-      // Ambil dari cache jika ada kesalahan
       return CacheHelper.revalidateCache(API_ENDPOINT.REVIEW(id));
     }
   }

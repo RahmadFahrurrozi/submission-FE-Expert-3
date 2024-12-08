@@ -1,4 +1,3 @@
-// src/scripts/utils/cache-helper.js
 import CONFIG from '../globals/config';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
@@ -7,7 +6,6 @@ import { ExpirationPlugin } from 'workbox-expiration';
 
 const CacheHelper = {
   async cachingAppShell(requests) {
-    // Prekonfigurasi cache untuk app shell
     const cache = await caches.open(CONFIG.CACHE_NAME);
     await cache.addAll(requests);
   },
@@ -19,9 +17,7 @@ const CacheHelper = {
       .forEach((filteredName) => caches.delete(filteredName)); // Ganti map dengan forEach
   },
 
-  // Setup workbox routing untuk API
   initializeWorkbox() {
-    // Cache API restaurant list
     registerRoute(
       ({ url }) => url.href.startsWith(CONFIG.BASE_URL),
       new StaleWhileRevalidate({
@@ -31,14 +27,13 @@ const CacheHelper = {
             statuses: [0, 200],
           }),
           new ExpirationPlugin({
-            maxAgeSeconds: 60 * 60 * 24, // 24 jam
+            maxAgeSeconds: 60 * 60 * 24, 
             maxEntries: 100,
           }),
         ],
       }),
     );
 
-    // Cache gambar restaurant
     registerRoute(
       ({ request, url }) =>
         request.destination === 'image' ||
@@ -50,14 +45,13 @@ const CacheHelper = {
             statuses: [0, 200],
           }),
           new ExpirationPlugin({
-            maxAgeSeconds: 60 * 60 * 24 * 30, // 30 hari
+            maxAgeSeconds: 60 * 60 * 24 * 30, 
             maxEntries: 60,
           }),
         ],
       }),
     );
 
-    // Cache static assets (CSS, JS, dll)
     registerRoute(
       ({ request }) =>
         request.destination === 'style' ||
@@ -73,11 +67,9 @@ const CacheHelper = {
     const response = await caches.match(request);
 
     if (response) {
-      // Jika ada response dalam cache, ambil data terbaru
       this._fetchRequest(request);
       return response;
     }
-    // Jika tidak ada dalam cache, lakukan fetch request
     return this._fetchRequest(request);
   },
 
@@ -93,17 +85,17 @@ const CacheHelper = {
         return response;
       }
 
-      await this._addCache(request); // Tambahkan ke cache jika berhasil
+      await this._addCache(request); 
       return response;
     } catch (error) {
       console.error('Fetch request failed:', error);
-      throw new Error('Network request failed'); // Tangani kesalahan jaringan
+      throw new Error('Network request failed'); 
     }
   },
 
   async _addCache(request) {
     const cache = await this._openCache();
-    cache.add(request); // Tambahkan request ke cache
+    cache.add(request); 
   },
 };
 
