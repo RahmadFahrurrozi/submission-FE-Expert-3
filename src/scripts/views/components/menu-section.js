@@ -1,6 +1,6 @@
 import FizziRestaurantSource from '../../data/fizziRestourant-source.js';
-import CONFIG from '../../globals/config.js';
-
+// import CONFIG from '../../globals/config.js';
+import { createRestaurantItemTemplate } from '../template/template-creator.js'; // Tambahkan import ini
 
 class MenuSection extends HTMLElement {
   constructor() {
@@ -15,9 +15,16 @@ class MenuSection extends HTMLElement {
 
   async fetchAndRenderRestaurants() {
     try {
+      console.log('Fetching restaurants...');
       this.restaurants = await FizziRestaurantSource.listRestaurants();
-      this.renderMenuItems();
+      console.log(`Restaurants fetched: ${this.restaurants.length}`);
+      if (this.restaurants.length === 0) {
+        this.renderNoRestaurants();
+      } else {
+        this.renderMenuItems();
+      }
     } catch (error) {
+      console.error('Error fetching restaurants:', error);
       this.renderError(error);
     }
   }
@@ -33,43 +40,45 @@ class MenuSection extends HTMLElement {
 
   renderMenuItems() {
     const menuList = this.querySelector('#menuList');
+    
+    // Kosongkan daftar sebelum menambahkan item baru
+    menuList.innerHTML = '';
+
     this.restaurants.forEach((restaurant) => {
+      // Gunakan template creator yang sudah ada
       const menuItem = document.createElement('div');
-      const shortDescription = restaurant.description.length > 100
-        ? `${restaurant.description.substring(0, 100)}...`
-        : restaurant.description;
-      menuItem.className = 'menu-item';
-      menuItem.innerHTML = `
-        <img src="${CONFIG.BASE_IMAGE_URL}${restaurant.pictureId}" 
-             alt="${restaurant.name}"
-             onerror="this.onerror=null;this.src='./images/default.jpg';">
-        <div class="menu-item-content">
-          <h3>${restaurant.name}</h3>
-          <div class="meta">
-            <span class="city">
-              📍 ${restaurant.city}
-            </span>
-            <span class="rating">
-              ⭐ ${restaurant.rating}
-            </span>
-          </div>
-          <p class="description">${shortDescription}</p>
-            <a class="cta-link" href="#/detail-menu/${restaurant.id}">
-              <button class="cta-button">Lihat Detail</button>
-            </a>
-        </div>
-      `;
-      menuList.appendChild(menuItem);
+      menuItem.innerHTML = createRestaurantItemTemplate(restaurant);
+      menuList.appendChild(menuItem.firstElementChild);
     });
   }
 
-  renderError(error) {
-    this.innerHTML = `
-      <div class="error-container">
-        <h2>Error</h2>
-        <p>${error.message}</p>
+  renderNoRestaurants() {
+    const menuList = this.querySelector('#menuList');
+    menuList.innerHTML = `
+      <div class="no-restaurants">
+        <p>Tidak ada restoran yang tersedia saat ini.</p>
       </div>
     `;
+  }
+
+  renderLoading() {
+    this.innerHTML = `
+      <div class="loading">
+        <p>Memuat menu restoran...</p>
+      </div>
+    `;
+  }
+
+  renderError(error) {
+    const menuList = this.querySelector('#menuList');
+    if (menuList) {
+      menuList.innerHTML = `
+        <div class="error-container">
+          <h2>Error</h2>
+          <p>${error.message || 'Gagal memuat restoran'}</p>
+        </div>
+      `;
+    }
   }
 }
 

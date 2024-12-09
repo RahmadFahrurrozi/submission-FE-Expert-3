@@ -93,7 +93,7 @@ const createRestaurantItemTemplate = (restaurant) => `
       </div>
     </div>
     <div class="restaurant-item__content">
-      <h3 class="restaurant__name">${restaurant.name}</a></h3>
+      <h3 class="restaurant__name">${restaurant.name}</h3>
       <p class="restaurant__city">📍 ${restaurant.city}</p>
       <p class="restaurant__description">${restaurant.description.slice(0, 150)}...</p>
       <a class="cta-link" href="#/detail-menu/${restaurant.id}">
