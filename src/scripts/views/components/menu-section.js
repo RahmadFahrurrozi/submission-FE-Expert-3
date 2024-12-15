@@ -1,6 +1,6 @@
 import FizziRestaurantSource from '../../data/fizziRestourant-source.js';
 // import CONFIG from '../../globals/config.js';
-import { createRestaurantItemTemplate } from '../template/template-creator.js'; // Tambahkan import ini
+import { createRestaurantItemTemplate } from '../template/template-creator.js';
 
 class MenuSection extends HTMLElement {
   constructor() {
@@ -41,11 +41,9 @@ class MenuSection extends HTMLElement {
   renderMenuItems() {
     const menuList = this.querySelector('#menuList');
     
-    // Kosongkan daftar sebelum menambahkan item baru
     menuList.innerHTML = '';
 
     this.restaurants.forEach((restaurant) => {
-      // Gunakan template creator yang sudah ada
       const menuItem = document.createElement('div');
       menuItem.innerHTML = createRestaurantItemTemplate(restaurant);
       menuList.appendChild(menuItem.firstElementChild);

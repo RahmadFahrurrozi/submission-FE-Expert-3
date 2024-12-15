@@ -13,12 +13,12 @@ class GallerySection extends HTMLElement {
         <h2 class="gallery-title">Culinary Moments</h2>
         <div class="gallery-container">
           <div class="gallery-slider">
-            <img src="./images/gallery/galery5.jpg" alt="Elegant Dining Area" class="gallery-image" />
-            <img src="./images/gallery/galery6.jpg" alt="Chef's Special Creation" class="gallery-image" />
-            <img src="./images/gallery/galery7.jpg" alt="Cozy Outdoor Seating" class="gallery-image" />
-            <img src="./images/gallery/galery8.jpg" alt="Exquisite Plating" class="gallery-image" />
-            <img src="./images/gallery/galery9.jpg" alt="Vibrant Cocktail Bar" class="gallery-image" />
-            <img src="./images/gallery/galery1.jpg" alt="Signature Dessert" class="gallery-image" />
+            <img src="./images/gallery/galery5.jpg" data-src="./images/gallery/galery5.jpg" alt="Delicious Dishes" class="lazyload gallery-image" />
+            <img src="./images/gallery/galery6.jpg" data-src="./images/gallery/galery6.jpg" alt="Chef's Special Creation" class="lazyload gallery-image" />
+            <img src="./images/gallery/galery7.jpg" data-src="./images/gallery/galery7.jpg" alt="Cozy Outdoor Seating" class="lazyload gallery-image" />
+            <img src="./images/gallery/galery8.jpg" data-src="./images/gallery/galery8.jpg" alt="Exquisite Plating" class="lazyload gallery-image" />
+            <img src="./images/gallery/galery9.jpg" data-src="./images/gallery/galery9.jpg" alt="Vibrant Cocktail Bar" class="lazyload gallery-image" />
+            <img src="./images/gallery/galery1.jpg" data-src="./images/gallery/galery1.jpg" alt="Signature Dessert" class="lazyload gallery-image" />
           </div>
         </div>
         <div class="gallery-description">

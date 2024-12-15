@@ -2,9 +2,9 @@ import CONFIG from '../../globals/config';
 
 const createRestaurantDetailTemplate = (restaurant) => `
     <div class="restaurant-header">
-        <img src="${CONFIG.BASE_IMAGE_URL}${restaurant.pictureId}" 
-             alt="${restaurant.name}"
-             class="restaurant-image"
+        <img alt="${restaurant.name}"
+             data-src="${CONFIG.BASE_IMAGE_URL}${restaurant.pictureId}"
+             class="restaurant-image lazyload"
              onerror="this.onerror=null;this.src='./images/default.jpg';">
         <h2 class="restaurant-name">${restaurant.name}</h2>
     </div>
@@ -86,8 +86,7 @@ const createErrorTemplate = (message) => `
 const createRestaurantItemTemplate = (restaurant) => `
   <div class="restaurant-item">
     <div class="restaurant-item__header">
-      <img class="restaurant-item__header__poster" alt="${restaurant.name}"
-        src="${CONFIG.BASE_IMAGE_URL}${restaurant.pictureId}">
+      <img class="restaurant-item__header__poster layzload" data-src="${CONFIG.BASE_IMAGE_URL}${restaurant.pictureId}" alt="${restaurant.name}">
       <div class="restaurant-item__header__rating">
         <p>⭐️<span class="restaurant-item__header__rating__score">${restaurant.rating}</span></p>
       </div>
