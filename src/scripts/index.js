@@ -9,10 +9,10 @@ import '../styles/about.css';
 import '../styles/gallerySection.css';
 import '../styles/detail-restaurant.css';
 import '../styles/like.css';
-import 'lazysizes';
-import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import App from './views/app';
 import swRegister from './utils/sw-register';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 const app = new App({
   button: document.querySelector('#hamburgerButton'),
