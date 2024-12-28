@@ -27,7 +27,7 @@ const CacheHelper = {
             statuses: [0, 200],
           }),
           new ExpirationPlugin({
-            maxAgeSeconds: 60 * 60 * 24, 
+            maxAgeSeconds: 60 * 60 * 24,
             maxEntries: 100,
           }),
         ],
@@ -45,7 +45,7 @@ const CacheHelper = {
             statuses: [0, 200],
           }),
           new ExpirationPlugin({
-            maxAgeSeconds: 60 * 60 * 24 * 30, 
+            maxAgeSeconds: 60 * 60 * 24 * 30,
             maxEntries: 60,
           }),
         ],
@@ -85,17 +85,17 @@ const CacheHelper = {
         return response;
       }
 
-      await this._addCache(request); 
+      await this._addCache(request);
       return response;
     } catch (error) {
       console.error('Fetch request failed:', error);
-      throw new Error('Network request failed'); 
+      throw new Error('Network request failed');
     }
   },
 
   async _addCache(request) {
     const cache = await this._openCache();
-    cache.add(request); 
+    cache.add(request);
   },
 };
 

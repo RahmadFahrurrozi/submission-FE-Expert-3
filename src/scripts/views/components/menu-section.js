@@ -40,7 +40,7 @@ class MenuSection extends HTMLElement {
 
   renderMenuItems() {
     const menuList = this.querySelector('#menuList');
-    
+
     menuList.innerHTML = '';
 
     this.restaurants.forEach((restaurant) => {

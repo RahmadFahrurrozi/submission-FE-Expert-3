@@ -1,4 +1,4 @@
-import CONFIG from "../../globals/config";
+import CONFIG from '../../globals/config';
 
 const createRestaurantDetailTemplate = (restaurant) => `
     <div class="restaurant-header">
@@ -27,8 +27,8 @@ const createRestaurantDetailTemplate = (restaurant) => `
         <div class="restaurant-categories">
             <h3>Kategori</h3>
             <p>${restaurant.categories
-              .map((category) => category.name)
-              .join(", ")}</p>
+    .map((category) => category.name)
+    .join(', ')}</p>
         </div>
 
         <div class="restaurant-menus">
@@ -36,8 +36,8 @@ const createRestaurantDetailTemplate = (restaurant) => `
                 <h3>Menu Makanan</h3>
                 <ul>
                     ${restaurant.menus.foods
-                      .map((food) => `<li>${food.name}</li>`)
-                      .join("")}
+    .map((food) => `<li>${food.name}</li>`)
+    .join('')}
                 </ul>
             </div>
 
@@ -45,8 +45,8 @@ const createRestaurantDetailTemplate = (restaurant) => `
                 <h3>Menu Minuman</h3>
                 <ul>
                     ${restaurant.menus.drinks
-                      .map((drink) => `<li>${drink.name}</li>`)
-                      .join("")}
+    .map((drink) => `<li>${drink.name}</li>`)
+    .join('')}
                 </ul>
             </div>
         </div>
@@ -54,8 +54,8 @@ const createRestaurantDetailTemplate = (restaurant) => `
         <div class="restaurant-reviews">
             <h3>Ulasan Pelanggan</h3>
             ${restaurant.customerReviews
-              .map((review) => createReviewTemplate(review))
-              .join("")}
+    .map((review) => createReviewTemplate(review))
+    .join('')}
         </div>
     </div>
     <div id="likeButtonContainer"></div>
@@ -95,21 +95,23 @@ const createRestaurantItemTemplate = (restaurant) => `
   <div class="restaurant-item">
     <div class="restaurant-item__header">
       <img class="restaurant-item__header__poster lazyload" crossorigin="anonymous" data-src="${
-        CONFIG.BASE_IMAGE_URL
-      }${restaurant.pictureId}" alt="${restaurant.name}">
+  CONFIG.BASE_IMAGE_URL
+}${restaurant.pictureId}" alt="${restaurant.name}">
       <div class="restaurant-item__header__rating">
         <p>⭐️<span class="restaurant-item__header__rating__score">${
-          restaurant.rating
-        }</span></p>
+  restaurant.rating
+}</span></p>
       </div>
     </div>
     <div class="restaurant-item__content">
-      <h3 class="restaurant__name">${restaurant.name}</h3>
+      <h3 class="restaurant__name"><a href="#/detail-menu/${restaurant.id}">${
+  restaurant.name || '-'
+}</a></h3>
       <p class="restaurant__city">📍 ${restaurant.city}</p>
       <p class="restaurant__description">${restaurant.description.slice(
-        0,
-        150
-      )}...</p>
+    0,
+    150
+  )}...</p>
       <a class="cta-link" href="#/detail-menu/${restaurant.id}">
         <button class="cta-button">Lihat Detail</button>
       </a>

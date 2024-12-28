@@ -1,3 +1,5 @@
+const assert = require('assert');
+
 Feature('Unliking Restaurants');
 
 Scenario('unliking a restaurant', async ({ I }) => {
@@ -7,6 +9,7 @@ Scenario('unliking a restaurant', async ({ I }) => {
   
   // Go to home page and like a restaurant
   I.amOnPage('/');
+  I.waitForElement('.restaurant-item', 10);
   I.seeElement('.restaurant-item');
   I.click(locate('.cta-button').first());
   
@@ -20,13 +23,20 @@ Scenario('unliking a restaurant', async ({ I }) => {
   I.waitForElement('.restaurant-item', 10);
   I.seeElement('.restaurant-item');
   
-  // Go back to detail page to unlike
+  // Store the restaurant name before unliking
+  const restaurantName = await I.grabTextFrom('.restaurant__name a');
+  
+  // Unlike the restaurant
   I.click(locate('.cta-button').first());
   I.waitForElement('#likeButton', 10);
   I.click('#likeButton');
   
-  // Verify the restaurant is removed from favorites
+  // Verify removal from favorites
   I.amOnPage('/#/favorite');
   I.waitForElement('.restaurant-item__not__found', 10);
   I.see('Belum ada restoran favorit', '.restaurant-item__not__found');
+  
+  // Verify the restaurant name is no longer visible
+  I.dontSeeElement('.restaurant__name a');
+  I.dontSee(restaurantName);
 });
