@@ -42,6 +42,7 @@ select {
   font: inherit;
 }
 
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
@@ -55,6 +56,12 @@ select {
     scroll-behavior: auto !important;
     transition: none;
   }
+}
+
+a, button, input, textarea {
+  display: inline-block;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 body,
